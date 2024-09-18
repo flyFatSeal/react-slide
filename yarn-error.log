@@ -1,0 +1,41 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add -D playwright-chromium
+
+PATH: 
+  C:\Users\flyfatseal\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\flyfatseal\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin;C:\Users\flyfatseal\AppData\Local\Yarn\bin;D:\Git LFS;D:\ffmepg\bin;C:\Python27;C:\ProgramData\chocolatey\bin;C:\Users\flyfatseal\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Go\bin;C:\Users\flyfatseal\.cargo\bin;C:\Users\flyfatseal\AppData\Local\Microsoft\WindowsApps;D:\Microsoft VS Code\bin;D:\GoLand 2020.1.4\bin;C:\Users\flyfatseal\AppData\Local\Yarn\bin;C:\MinGW\bin;D:\ffmepg\bin;C:\Users\flyfatseal\AppData\Roaming\npm;C:\Users\flyfatseal\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\flyfatseal\go\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  20.17.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EPERM: operation not permitted, unlink 'D:\react-slide\node_modules\@rollup\rollup-win32-x64-msvc\rollup.win32-x64-msvc.node'
+
+npm manifest: 
+  {
+    "name": "react-slide",
+    "type": "module",
+    "private": true,
+    "scripts": {
+      "build": "slidev build",
+      "dev": "slidev --open",
+      "export": "slidev export"
+    },
+    "dependencies": {
+      "@slidev/cli": "^0.49.29",
+      "@slidev/theme-default": "latest",
+      "@slidev/theme-seriph": "latest",
+      "vue": "^3.4.38"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
