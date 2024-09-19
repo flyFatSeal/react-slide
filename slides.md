@@ -87,7 +87,7 @@ Here is another comment.
 
 ---
 layout: image-right
-image: ../image/1725798119221.png
+image: ../public/image/1725798119221.png
 backgroundSize: contain
 ---
 
@@ -107,7 +107,7 @@ React框架自身的概念和实践理念，似乎已经超过了前端应有的
 
 ---
 layout: image-right
-image: ../image/CPT2409082121-462x447.gif
+image: ../public/image/CPT2409082121-462x447.gif
 backgroundSize: contain
 ---
 
@@ -233,7 +233,7 @@ Notes can also sync with clicks
 
 ---
 layout: image-right
-image: ../image/chrome-capture-2024-9-9.gif
+image: ../public/image/chrome-capture-2024-9-9.gif
 backgroundSize: contain
 ---
 
@@ -267,8 +267,8 @@ Also, HTML elements are valid:
 当React渲染一个组件时，React会创建组件的快照，其中包含了React在特定时间点需要更新视图所需的一切。Props、state、事件处理程序以及UI描述（基于这些props和state）都被捕获在这个快照中。随后React接收UI的描述并使用它来更新视图。React 将重新渲染拥有该状态的组件以及其所有子组件 - 无论这些子组件是否接受任何 props
 
 <div class="w-full flex gap-x-4">
-  <img class="w-45% object-contain" src="./image//chrome-capture-2024-9-9 (1).gif" />
-  <img class="w-45% object-contain" src="./image//chrome-capture-2024-9-9 (2).gif" />
+  <img class="w-45% object-contain" src="./public/image//chrome-capture-2024-9-9 (1).gif" />
+  <img class="w-45% object-contain" src="./public/image//chrome-capture-2024-9-9 (2).gif" />
 </div>
 
 
@@ -298,7 +298,7 @@ Also, HTML elements are valid:
 | <kbd>react-reconciler</kbd> | react 得以运行的核心包(综合协调react-dom,react,scheduler各包之间的调用与配合). 管理 react 应用状态的输入和结果的输出. 将输入信号最终转换成输出信号传递给渲染器. |
 | <kbd>scheduler</kbd> | 调度机制的核心实现, 控制由react-reconciler送入的回调函数的执行时机, 在concurrent模式下可以实现任务分片. 在编写react应用的代码时, 同样几乎不会直接用到此包提供的 api. |
 
-[image](./image/core-packages.png)
+[image](./public/image/core-packages.png)
 
 ---
 
@@ -315,7 +315,7 @@ current 对象-当前渲染在页面上实际ui的 fiber树结构
 workInProgress 对象-fiber树内存中工作备份，下一帧即将替换当前 current 的fiber树结构
 
 
-scheduleUpdateOnFiber(): 告知React开始渲染的位置，每次rerender都会触发 [image](./image/react-internals-overview-light.png) 
+scheduleUpdateOnFiber(): 告知React开始渲染的位置，每次rerender都会触发 [image](./public/image/react-internals-overview-light.png) 
 
 
 ensureRootIsScheduled(): 确保根节点有任务被调度，同时处理重复的useState调用（合并和消除）
@@ -374,7 +374,7 @@ IO:模糊异步同步界限，suspense----[可中断demo](https://codesandbox.io
 [中断示意图](https://jser.dev/2023-06-19-how-does-usestate-work#4-summary)
 
 
-[中断步骤详解](./image/update-process.png)
+[中断步骤详解](./public/image/update-process.png)
 
 状态恢复，中断容易恢复难，hooks 是一个链表，不同的更新可能存在前后依赖关系，如果高优先级中断低优先级，很有可能出现数据失真。
 
