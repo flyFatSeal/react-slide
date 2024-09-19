@@ -87,7 +87,7 @@ Here is another comment.
 
 ---
 layout: image-right
-image: /public/image/1725798119221.png
+image: /image/1725798119221.png
 backgroundSize: contain
 ---
 
