@@ -22,7 +22,7 @@ transition: slide-left
 mdc: true
 ---
 
-# 你不知道的 React
+# TypeScript 的具体应用
 
 Presentation slides for developers
 
@@ -50,19 +50,17 @@ The last comment block of each slide will be treated as slide notes. It will be 
 transition: fade-out
 ---
 
-# React由什么组成?
+# 序言
+TypeScript（简称 TS）是 JavaScript 的一个超集，提供了可选的静态类型检查功能。它由微软开发，目的是在 JavaScript 基础上添加类型系统，使得开发者在编写代码时能更容易发现错误，从而提高代码质量和开发效率。TypeScript 会在编译时检查代码中的类型错误，并将代码转换成纯 JavaScript 代码。
 
-React 用于构建 Web 和原生交互界面的库
-
-- 📝 **心智模型** - 描述UI，副作用，渲染时机，交互行为，状态管理，代数效应，u=f(s)?
-- 🎨 **设计原则** - 离谱的React,React 一点都不 reactivity！
-- 🧑 **UI Runtime** - 包结构，不同概念的数据结构，Fiber，hooks，call tree，异步还是同步
-- 🤹 **Concurrent Mode** - 渲染中断，时间切片，lane，状态恢复
-- 🎥 **React Compiler** - v8工程师都顶不住
+- **图灵完备** - Typescript 是具备图灵完备的编程语言，而不仅仅是 js 的超集
+- **类型系统** - 支持静态类型，可以显式声明变量、函数参数和返回值的类型。类型系统帮助开发者在编译阶段捕获错误，提升代码的可维护性和可读性。
+- **编译过程** - 需要编译成 JavaScript 才能运行。TypeScript 编译器（tsc）将 TS 文件转换为有效的 JavaScript 代码。
+- **开发工具支持** - 由于类型信息，现代 IDE 和编辑器（如 Visual Studio Code）能提供更强大的代码补全、自动提示、类型检查等功能。
+- **接口和类型声明** - 允许使用接口（interface）和类型别名（type）定义数据结构和函数签名。这使得代码结构更加清晰，并且更容易进行协作开发。
 <br>
 <br>
 
-参考资料 [React 官网](https://zh-hans.react.dev/learn/react-compiler) -- [overreact](https://overreacted.io/) --[jser.dev](https://jser.dev/) --[图解react](https://github.com/7kms/react-illustration-series/tree/v17.0.1)
 
 <!--
 You can have `style` tag in markdown to override the style for the current page.
@@ -86,76 +84,66 @@ Here is another comment.
 -->
 
 ---
-layout: image-right
-image: /image/1725798119221.png
-backgroundSize: contain
+transition: fade-out
 ---
 
-# 心智模型
+# 主题
 
-React框架自身的概念和实践理念，似乎已经超过了前端应有的控制范围，从16版本后，其内核复杂度飞升，心智负担重，备受诟病。
+从具体应用的角度，用以下几个主题做简要介绍
 
+- 🎨 **不止 any** - 泛型，条件判断，遍历，约束，编辑器提示，never
+- 🤹 **应用技巧和事例** - 链式推导，递归求解，字符串匹配，遍历取值，
+- 📝 **主流开源库** - 类型定义，导入导出，文件排列
+- 🎥 **当前项目** - 类型定义，编写成本，收益
+- 🧑 **高阶概念** - 交并集，逆变和协变
+<br>
+<br>
 
-## 名称解释
+参考资料 [TS 官网](https://www.typescriptlang.org/) -- [类型体操](https://github.com/type-challenges/type-challenges) --[高阶应用](https://www.zhihu.com/column/c_206498766) 
+
+<!--
+You can have `style` tag in markdown to override the style for the current page.
+Learn more: https://sli.dev/features/slide-scope-style
+-->
+
+<style>
+h1 {
+  background-color: #2B90B6;
+  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+</style>
+
+<!--
+Here is another comment.
+-->
+
+---
+---
+
+# 名称解释
+
 
 |     |     |
 | --- | --- |
-| <kbd>组件</kbd>/ <kbd>component</kbd> | React构建的基本单元 |
-| <kbd>副作用</kbd>  / <kbd>effect</kbd> | 外部数据行为和React结合的过程 |
-| <kbd>代数效应</kbd> | 分离业务和数据执行关系，代码编写只关注业务逻辑 |
-| <kbd>u=f(s)</kbd> | 页面展示由数据决定，并且渲染状态保持预期 |
+| <kbd>泛型</kbd>/ <kbd>Generics</kbd> | 它允许你在定义函数、类、接口或类型时，不预先指定具体的类型，而是将类型参数化，直到使用时才确定类型。 |
+| <kbd>条件判断</kbd>  / <kbd>Type Guards</kbd> | 条件判断不仅限于简单的值检查，还可以基于类型执行类型保护（Type Guard）。通过使用条件语句，TypeScript 可以智能地推断类型 |
+| <kbd>逆变和协变</kbd>/ <kbd>contravariance/covariance</kbd> | 类型兼容性和赋值 |
 
 ---
-layout: image-right
-image: /image/CPT2409082121-462x447.gif
-backgroundSize: contain
----
+
 
 # 基本示例
+- **泛型** - demo 项目 充值中心
+- **条件判断** - 通过类型定义进行约束 [demo](https://www.typescriptlang.org/play/?#code/GYVwdgxgLglg9mABABwE4zFAMgUzAcygAsAKANwEMAbEHALkQGcp0DEAfRMEAWwCMcqAJSIA3gChEiGMEQkoAT2Q44syjRyIAvDsQByZq3x6REqVIgJGcKjgB0VOPnLVaDvISJCA3FID0fogABuq0QYiA1RGAFcaAtaaAXHLBhhj4QZKIAL6IOFSMmmbmlmDWtg5OLhp2UHAAYjAAHjgAJiQATEI+-oEhrjjh0fHB3PyCqVLp4uPiaBjYHsQkAEQAEtmOADSIAOpwqFSNAIQLPlOsswTzACxt3uK3EFQUjIyIACJOYml8FKgA1iSmaQsVhs9kczgW21Uh2OYwmdweT0QAGEKFAPlIeCoAO7-dEFYElMGLACy2OhN1hk1AkFgCEQPAoPxwAGU4OBmhQwDAGVQGG98BxkaiAVIZHJOdzqNIilBORAVLJ+SLzBKeXYvr9-r5EAFgqrqH1YgkgvzRhksjk8oDEPqqHZMXAcR0dV1bYaBkEUVAzeNJoVmIhGu8tFwcFjXmVjgymaz2SQg-hjuJ-WiIKjtKHw16teJoyy2WBmmmoMcgA)
+- **收窄类型和穷举检查** - 穷举和never [demo](https://www.typescriptlang.org/play/?#code/JYOwLgpgTgZghgYwgAgGIHt3IN4ChnJgCeADhAFzIDkMmVuAvrrqJLIigEJxQ76GkK1AEY96TXMTLIAggBs5yALxpMyAD7JuUZrhgBXEAjDB0IZAAs4IACZyIANThz9EABQA3Z5XlyAlHwEAM4A7sBgCBbIns4AdFIQAXgEBAhwQSg0dOT8KcgA9PnIgJvxgDOJyF6KgNURgGymgCFegFxyqui5KcJQEHAA1q1pGSJiOXkEhRXOyIAU6mWA9GZaPK0E7Z09eTYQ8PpyYEPDo5WTM8ggEB7QC8gIZkFgyBAAHlb618CnAMIWEAhdlMenvCqVc5Lbr8JgMIA)
+- **继承和约束** - 链式推导[demo](https://www.typescriptlang.org/play/?#code/PQKgUABBCMBMEFoIGEAWBDAlgO3QIwBsBTCAeQAcAXTAe2wGdJEEXWm8BPCAQW0tTpcAYgFcIACgAC6PgDMRASggBiALZEAJphGqV6cuQKYAxump0wTZdYgBFEUXrnslqGiy5CJGlVoMI6ABOJMY0qqp0BFwi9JoQOBAAUugAbuj0xoGYVAB0EABCIpQQAO6oRNilJPQlmJTGqBCUNBAAKhzkRADKmdmUADQQppUcNGLkgT5EgVFNHSR1APyuEACSlfyY9EMYBMTYAOZEg6Ni2ERxzXOdAZU0eABWRMbFNIEBQwTp20hlZkQpaYQU4QIwAaxISCuExoKUwGhIlBKLXk2BefggAAMfM5xBCOIM0gQHApMbcNFijpRxKS8ussTi-JiTmMhjIIEQAB6UCoU-ghESBYJ8IZ0WSYA7XEicJrlCAHTCAyr48kQIkOPIAdWqAhEBAp+DGxSu6GMxkc235EHFuAIEGC9D1xTh6EpREomJyKyEbw5nPQqkMRBWmNDlEYUARxi+wVFDGKoWw4oOAC4UBgcPhiCtE057Y4nRAALxx5NMKA5Rl0cQAclkNBoNcGcAAzApyxBK75qzXcOomxAa5R5ggGug9hUjvQa+2oBWq9ha3gggOAN5q8cONM1gASRD2LU1b31NYgAF9Z3OclSaStgMA-Z0XrLEfMIDRZPnHQRjS08EQUyYHAeUCWRTRIAAlAsfwgVcO3rGg02wHR-0CDs+wAiAnCyQ4O2XQI0zguc53VTDsJwA4OzPJhqKgUNMRWABNVkNDoIcIHOS4WhKLIeVuLgHnoYBw1BGgFWMJoWgwbANGIF8IBhLxdCQB4YmKBJhxuYhAQIL0mGYsRhgCehHXUWUzCxfEyUiLhTXNKhtkxcjDjJGQ+TlTFSLJIz-34zZDkQCBVLzYhUgWYp0gQLY8i6AMSExKzSjY4pfPIb5Llqc09KgAA+CAADVMCIEp30qABxOodxEPA01QShKHIegU3vcMGhyQTK0CA5gDgMAQGASxQAgAB9UaxvGsaIAM95kBoBEID3WMJuW0aIH6yxNJIdxMy8AAeVpi1gs88pLIj327bA012gBpP0eRk7ZnIOQZ8py8QO3xNNbq5e6NG2fEPzaCBFg4gEgS+-oO1ItN8svIs8u+7leX+ohRk-A6Qe2zxiF20hVDqfbBmuvKADIICg0JAg0G6XpyvK0yxrMiH2iAyYpt5qeu2mcqYKk0xpYs8taMBqLAIaVuWtpHGKZB0kcEaJfGtaBswQM3mNN9124cFjggABRTkn2KM9rUmXQa0kTbR12fYp2AIpMAIadLCjGMQjoPN0AZjNseDMBc2KB0nWgQ70CYLtcTrBsB1bS8I78JcV0GddocHPcDwgI8Zg0U8L3DhdawwgchxHMcJ0ORwZ3Dm9239j3A+gyh4BLMP5wuwu4uLmQaH5d4i8ve8IEt+gEC5I3R6FN58-b3tO8GGsvjzfvq-dW86-jL8nRbUPp8jov5+73uOM7geH2H0fDeeSgJ8mNC273ueYFgNsV+pWvNrZWJthLABtJgDaNrtbWmAIS7U2oDIOP5oCDAAVfTQ0A6aQygLAl4QCdZgPmBAxusAYGXxeJoWAiD-54MoGgkBzNwGfkgZQFsuCjaaBbEQgAuhtN8KCeQaBDqdJgCEkIoWmOwIIhEoabjIpQHClEoC0WPuoNMT0RasJuOwghh0zoYTkeIiiCiwAf2URobe3CoDqI4vwtCotxaK0mqIQIR8ug8kagrSxw1lZi3ALlCAXQMCxlOO8egNBiTOCahAOqDUmotQyKgdq9BOrdTgMAGQNQBHuMKsVLC-iHYe1qvVRqzVhIRKiTEnqsBgB+ICX4CMEA8oAFk3hbRtpORwWTQm5NapEjqbxKLrSAA)，递归求解[demo](https://www.typescriptlang.org/play/?#code/PQKgUABBAsCsCcEC0EBiAbAhgF2wUwDtJklSziAjATwgC8ALAewFcqBLAWzYIHMIAKAAIBjehQBOjAJQQAxBzwATNsw5zM48Ziphis-RACKzPAGdsbRkWIBJAhGz02piKMzp0hHngA0EKiwQAO4s6IoQBHhKDozB4mz4EJgOVAAOeA70OA6YANZmSfYaWjSYBOF4XLjRjhkAZljVRZraKekAdLpQqIziEHgAHpgcqZ4AXF0QAAYz2KbE2Gn1jfj2ALxoK4QAPADaAIx+AEx+uwDMftAAuqe7u7BXj1cAfBDAwBAHx34XMH4PxBmU0mrwAamw8EEIFYIABxBIACWYFDGEHouFSpjG7zmonaACtTO1ejxgHB4GAQMBdKAIAB9BmMpmMiAATRYfQAwoxFBkEXhxBlmcKGRAqbpFulNjhVtsACr9AarRQuZgEXIERhBAi7F4QDYKwbKly7bh1AVoPzta1mi0AGSuxAA-GhFcaIGqNVqdY6oFAXbtre0MDKdqhnlbrSGmts7c9fX7UbtUJHg1sCLH48RUXKANw0kD0kXMiByszYCCczCmArFkvizipXoVyUZADeEAAogBHZjuPydgbpYQVgC+EDqkjUAHJBK2kG4PF4zMBmBZ0KZpxKlq5qwUNrtiIPh9htj2++httHZbqI58XhGj0O8COz733Ff03tDhAThBftcd5fL+PyXA+PhPieb4Xp+oYZsBuxHI8QE-khzyPlAx4vqe54fteOzAX+5xgbc9xPC8pyoaBfwQA86EQZhz6vrhl74fBHZ1IwjCotOFAaNOxyovsAAMECjn406cYwfHiNOFGfBxXE8TJAm-kJoniRAklcSp4FgI6YDvBAc6mEggwnmZmi9GArb9FZfQbGx2zTvs07PAWRZ1qKqDMOItR9AAyvgmKeV5YrUqAxCvAFWSCv4HIQKYjDoGulgEFiaIYliOKmHihLEuIpLksAZSmEEApRRA4KQolyWpVYGXotgmLYsAuL0ASRIkmSCDAElKUWA1lUALK9BknJZEuvBmKiTUtTleVdYVlLUkAA)，字符串匹配[demo](https://www.typescriptlang.org/play/?#code/PQKgUABBBMAMDssIFoIBEBOB7ADhAwgBYCGGkKylV5ARgJ4HE4AuxAlgHYDyAZgAqEAQhAAUAAXxNWnXgMEBKCAGIAtgFMAJmwCuK5czUqcAG2IHkxtgYzFjyzjzVlyS1xACK2tQGdmbLBxg5Ji4EMQQ3jhqAMZsPGyaENEkGBA82HrhvhicAOYAdEFQAGJYqWoAHsRGxmoAXEUQAAYtzN7kzHRREILazNY8xgwAvOjYOESkADwA5BA0ENoQzMsQahCpPBB2DACEEDMANAcHAHwQwMAHNH0DQ7sz5C1NjecAagkA7hABEADiVgAEtoaHUIIR+jhvHVLm1kvkAFbefJlXLAOCIMAgYBBUAQAD6hKJxKJEAAmlhtKl8FgNOtAU51iTmYSINigp1uiEJikpgBlNYVAwcDTeCLMHIcXLHfCC4Wi8WS3LnYbkAWVeVipoAEgA3g4nBAcBg1PEKgBfPX4S36jiOVLebQ8M3ml5QKAAfjGuEmGCmOt1xtNbAtesdzpDrplp3IUDBfIA3LiQASWSSIAAVHwrSTeHyptOk9lsIxlFac9a6iAAUQAjtpbMdqxUotEVua0hkDmIK8hkrZalKfMA+mxjN5HmAK0liHmxaMANrkS4QHveZCVVvMDcYbBkKDNrdTOsN4xTbm+2Y3fqGwZ0B7HGYzU6P693e-Pl-kQ8xZjH+u2Oe4yXjMb63vcRwnM+r63E4d4PKcX4Hi2v7-qeQE+ryoGwZsEGPghME3rhdCfoc34oW2aGAReWHuvMOFpPcdF0ZBczQdcOHwaR5FHie1HAbRCxLOWawbGk2wQHsByPmchHvghSE1hRf58WeNHTHMQmrCs6ybBJUmsTQ7FzIs2miXpOwQPs3HIbxAFqQJGnzKZIm6eJlnWY+zDGc5SxQG5WweWcX4ALrJgWhb4hAxRUswhCGnyBhQhFhZsjioDkOcfIpOsdCUg6WDGKOATQuCkLQrC3jwkiKIYGiGKwMAxAcN4nxOJlEAfGo3zeIVxUtWCELMFCMLAHChCIsiqLoggjW9UVfglR1ACyZTrJMxiDrkPiDeVo3jZNtW5FiOJAA)，遍历取值，
+- **逆变协变** - [demo](https://www.typescriptlang.org/play/?#code/JYOwLgpgTgZghgYwgAgIImAWzgG2QbwChlk4BzCALmRAFdMAjaQgX0MNElkRQBEB7MsggAPSCAAmAZzQZseIiQZwoAawAUASmoA3fsAmt2hHBDCk5uauiy5kAXgKkK1AIwAmZCwDc7U+YlBagEhR0VnKmQPABpiZGU1ai0HAD4COLYfYyA)
 
-使用React构建web应用
-
-````md magic-move {lines: true}
-```ts {*|2|*}
-// 步骤1 JSX描述组件和属性
-const Button = (props)=>{
-  const {text} = props
-  return <div>{text}</div>
-}
-
-ReactDOM.render(
-  // { type: 'Button', props: { text: 'click' } }
-  <Button text="click" />,
-  document.getElementById('container')
-);
-```
-
-```ts {*|1-2|3-4|3-4,8}
-// 步骤2 JSX被转换为ReactElement对象
-{
-  type: 'Button',
-  props: {
-    text:'click',
-    children: [{
-      type: 'div',
-      props: {}
-    }]
-  }
-}
-```
-
-```ts
-// 步骤3 ReactElement对象被转换为正常js，html格式
-let domNode = document.createElement('div');
-domNode.innerHTML = 'click';
-domContainer.appendChild(domNode);
-```
-
-Non-code blocks are ignored.
-
-
-````
-以上代码中，使用 jsx 简单的构造了一个组件并将其渲染到页面上， jsx 就是语法糖，将 css js html 混合组合，并通过props实现父子组件之前的通信。
 
 ::right::
 
@@ -163,63 +151,37 @@ Non-code blocks are ignored.
 
 ---
 
-# 状态管理和副作用
+# 主流开源库
 
-React有一套自己的状态管理机制，Component的本质是函数，通过 useState api能够将组件之间的状态实现统一管理。useEffect能够将外部数据和React框架相结合，从而改变React状态。
-
-<div grid="~ cols-2 gap-2">
-
-<div>
-
-[demo](https://codesandbox.io/p/sandbox/react-hooks-counter-demo-kqm9s?file=%2Fsrc%2Findex.js%3A6%2C1-18%2C2)
-```jsx
-function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <div className="App">
-      <h2>You clicked {count} times!</h2>
-      <button onClick={() => {
-        setCount(count - 1)
-      }}>Decrement</button>
-      <button onClick={() => {
-        setCount(count + 1)}
-      }>Increment</button>
-    </div>
-  );
-}
-```
-</div>
-
-<div>
-
-[demo](https://codesandbox.io/p/sandbox/get-data-using-react-hooks-eujg0?file=%2Fsrc%2Fcomponents%2FResourceList.js%3A4%2C1-33%2C3)
-```jsx
-const ResourceList = ({ sendResource }) => {
-  const [resourceList, setResourceList] = useState([]);
-  const fetchData = async () => {
-    const resp = await axios.get(
-      `https://jsonplaceholder.typicode.com/${sendResource}`
-    );
-    setResourceList(resp.data);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [sendResource]);
-
-  return <ul>
-          {resourceList.map((item) => (
-            <li>{item.title}</li>
-          ))}
-        </ul>;
-};
-```
-</div>
-
-</div>
+用贴近我们日常使用习惯的 antd-table 组件为例子，它的上游库是 [rc-table](https://github.com/react-component/table)
 
 
+---
+
+# 当前项目
+
+tool-mod mod二期
+
+client-charge 充值中心
+
+act-temple 活动模板
+
+activies-customized 活动组件库
+
+收益和成本
+
+
+---
+
+# 能力边界
+
+runtime 和 compiler
+
+高阶：[JSON parser](https://www.typescriptlang.org/play/?#code/PQKgUABBBsBMsA4IFoICkDKB5AchACgIYBOAzgKbGQrK13UBGAnhABJMAmxA9gObkA7CAAoAAgAsmPfgEoIAYnIAPAC7FyAW3IKVmgA4AbQruQGAlruKEDCgFaluAsNXmuIARQCu5UirOPnKABNbk8AcnUIdQBHTzN1DggVbggzDUNNQRUIQiSmPXJTcgA3chs9EhUDFgqySiSU2op0bDxfYjMBXlSBZJyIbgZbcgBjbPNLazyCgDpAiAAlclj4zN7SAC5qFAgAAxxPDQZKUl2cgUTdgFUBMxHuDm0fEcICkQAdTyVvpRkzzpauAgLyEx1SvAE3ASMwgIU8EAE5HIHAEYWyfSa2hU4k0c2oAD4IAA1MzkADuAyEAHELKxPAwNhBxCoVHpNsBgCpSCNxDN7DMobxgHBEGAQMBnKAIAB9WVy+Vy2GhYgQADCD20rEo2gVutlEHFkuAECYyvOpDJJzAKny2nwnnUAB4ACqEgC8EAA3tQANr4HoQADW5FNADMIM6ALqM51+yMQZS6C6kAZDUbZAD8BAd5BdccJMbjAG4wABfEvW20QDDkFT4HgFYg2l0AGggAGkE6pBBwU-XuI2be2Q22ie6vb7-QDg2GIxAAD4d6MELtJ3sdiBZokQRn+xM9lMz7jh52biNxncIkqUEvl5w2t7O7jBoQesKesILiBhUufxdhH0-2-SMgLCDZQJbIDdgAIgAEk9dpOl4UtoLORd6zSCwzFKCsHztDoNCw0oIA9ARPAMGxFzUbwv1DawKFwqsDiOShnSrN1qEXXYAAZdk4vYAEY+KgLjYGEr9dgAZnEriABYZL2ABWBTdmgFSAHYVIQFSAE4VOQXYK3vKsiDqF1VwPCBEK6cd7SdUyKAAGQsShrBdZ9BDMAAvXNXXxH1uMjfFGMfDzbh8x1qAwFtqFPfdkwjMKfXjD1krAccMAshLdngzpQ3qAAxeJfFLXKBHylUlhK8SsyKshsni9d31A38vwA0CQLa8C2sg7YzyfF9vNzKqVDbH0Zgm502zq3wgr6xkZoa7tstQvqswc8gMDUJCqvIlRHRGwlGpTH0+qgKA8vqEaYvO26egqxKXyy9cYPg6zkNWu6IEjM7+rCoaDp8UaIHGya2wGwQ5q+xlEVKKhboW4qlrXFNdhUNC9lDDHdgEcSoHWkgKAwwi-FKXaDH2jAjuW9dTq+i7yquoGbvpy6VQhoRjr2OCEO2roUIxsiKK-ajtEXOiDAoX6fq+rMOYB66QYmmYpseyH8V+mHr3h87Efq56U2Y45iDYgo1qvOH5ogRaDb2O2uPedGJPeXHzfliLFddK3YcoagYyMvCCEJ8hnMmAxzK5jnkvHOKaZO6hXt5jp+dQr8hcopJiBo8X6PIMAZbPP1g9D1yDHJ-bY0C-EC93YPy5dYLjLeDb69jlG1YEaOSLnLm6fuwqkY5lnlbZxYgY5lNI6Sn6C9qwewtt5rzY2rA0zGeuRonjWEet+enq59rl+DgBBYgrCYDfx7C0ht91i3fagLW4ZCu0T7PwgL58PbIqgNvLKjyMLNy6208AIQMkIySdxSiDH6MdbY+lHotNsI9GaVSvvvOOHdkqz13vrA+IFzY+nLm2TeYUC6P1wb4RevVboEzqKfc+l9fBDzHqQPat8KFEmsN4Bu8DR7FG4eQNs-DSEYPbgA8hZ4NoMI-vXYoojBBjWVsQiAAiDDeChnfH2Osn43ibq-Ooq9hjry-hTCOmCAEkNMdkD0npSxwN7tQRBSNh4TVHiNW2AD87UDnngzBP4wiEJUSNSResqEHxoedOhFAjHpiYcDcuHDLw2y5rsd4PNR4GGUJkUs6S8ZSMIPEQGvgrFsIpm2LJShMjU3bn3L6o98DEN+gzB6CjOYWOntLX60TyCxJMWU-abS2yNOsUkih2jvbaz9vfYgL8g5FOoB4qeL5kpAOsd3OxLNhwsC5u9buYRAnjiWZghBqDKHAxQa09BghPHTxwSk-x4FzZcPUcNa5AgamWVOQ9NR3hhFnLaZI-GIMax1gbJQZsKjtltl+eQfEpSVAcyBZeCZO9UWXiIdYhFkY5kvJ4cc8R08jlA3gU4s5SDqCXKZswheyzBBpXuUjW2aSMlnNhbkz6USQawoRUiq2Dz25L1oUHQxa8VDxI5p8hK3z6hEhUaPOVQNkVZh9IqgZo4QmaxmfyplB9AJH3oe-T+AzimIrClK2mCr5VnLVSoZVIM1V7Q1UqrV6KKECsssTIiedhU+iQaws1L5QnavGdrOZG0S5WDLtY8x7dE7vQFmnciGdRa0Vzu6WKzLWUPS2snXg6pehZETVmG4zxXibT5rwR0uakIFqTCoAsEY5mlu5OWmtXRq223ehmqAmVUllQeotUqnpR41nuBcYd7igalnyVmHKnoh3wTHY4DgM7mXvBdvk4FaSBDwRbS8Ao7aq2HRnVq+di7PTLonWcVJG7iBbrPGk4ge7EStsPZW01+JT3Qz2PBC9V7V03swWk94WNul7FAy+st7682fu-XdRk56kbDoA2u297wGAPrnRhqDb6K2wZPQ+xDf7kNLtGCutDwGN3o3A2klQuGD34aQnBojv6F2kcveRidDG20fsI1bDAcyACieHVTiBIIQMYUJO27MrRlZlrtt2bumX24D96fEQfUxQ1TcawNKb05eHTlldiYY02k0z2nmU0aU9Zwz4bg5HvrlFLtla1kDJc3m7uuw+LyfQwOge9VJ0AunTVEVFBHMxsVvO8uw6ROMbExJqTxBHSLS-bsW+jIjMrX82g6qGnMUlO5vBGLqEa7VnXbupOSF4NZnRZl5lOXzlBauXl4FG0Ismqi8V6xw6h3pemdo+zdQvWk3IPXLL65u3dwm6jUWjWRo1ZBorUWZWZuY1zvNkL+XFYSwoKthTybNutcLordOZXBuShADKPUCoIwktVIQCgKYbu3cNGkPQUJ0RVk9BAITsRrBtiE0oAoYwIClggKGHgGhvyiDwsgHk1gsldB8MATwfhJaBMrG8XQVDu7nQ2o6B93p6YQGgoQaCjJoIMGgm2ZppPqeMl20IiAdPoIjApyDUWbYmdtmgjiCi3AacThJ1AMnHOqdC7p6LhnEPc509LIAlnJPoK3AMBz9Ov1Sx9X61j7QLwnvdz7kDkH+0-ueDcsIPqBOies-J5T6ntPlcy550r+mbOOc+i57LyWzO+dlAMILtsxORdi-t5LkX9OOdM-l4r1nqv1fJs19r2+Mg2yW9usH26quYaJ6+iMRknus7M5d2EfnAewhB7p4QRkYQGCBJJwyb3UsvoK9+o36PX1q-fjr31LX1AZD4nhdQY36ZHRm7cgT98v54VensUP4fwPR-j-DpP5KYQZ-R3n1AEfYwx--ZX8HR0AEBIgRn9owfMUF8m73+bg-Zk0RF-X22UWF-5g79N-vn+YXcwAWglqAXQuXuLuZ2T+voYQ-+5ez+Re3OucbYZ2BIW+v2i+u+y+X+6e+Oh+NuyuZe3Ad6G6AgG6DAG6oY4uZIUIBgHA0Emu-WUAqeIgfUme50pe-uuBxALsGGoGYE34ZBxAFB9e50WutBCBl+2+yBH+t+jok+P2AklOPBFB0EYOT+Myr+V+S+n+1uP2fuAu1A1AchlBjIAksAkkYO6WcB2sr+P0YAUoL28o1sDo2I9QW05AbI12Nh0oBoEooABI1Y4mkQpoDoVk3A6ifgjgmwTILIbIGwHIXIPIfIpAAoxAQoIoCAwAhAAgFoD8EAhIJI5IgRwR-g6RjIzIrI7InI3IvI-Igowo8AKRDg+RoR3hAAslCNoAlhRIIPwGEcUZEdEeUXEQkbwGKBKEAA)
+
+[lisp complier](https://zhuanlan.zhihu.com/p/427309936)
+
+会编译原理就是可以为所欲为 [craftinginterpreters](https://craftinginterpreters.com/)
 <!--
 Notes can also sync with clicks
 
@@ -231,169 +193,5 @@ Notes can also sync with clicks
 -->
 
 
----
-layout: image-right
-image: /image/chrome-capture-2024-9-9.gif
-backgroundSize: contain
----
-
-# 组件通信
-
-
-
-React使用的是单向数据流，组件只会监听数据的变化，当数据发生变化时它们会使用接收到的新值，而不是去修改已有的值。当组件的更新机制触发后，它们只是使用新值进行重新渲染而已。
-
-因此，如果父子或者兄弟组件要做到双向通信，需要要子组件的状态提升到父组件，将相关 state 从这两个组件上移除，并把 state 放到它们的公共父级，再通过 props 将 state 传递给这两个组件。这被称为“状态提升”。
-
-Props：由父组件传递给子组件的只读属性，不能在子组件中修改   
-State：组件内部维护的可变状态，可以通过setState()方法进行修改。
-
-
-
-<!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
-
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
--->
-
----
-
-# 渲染
-
-当React渲染一个组件时，React会创建组件的快照，其中包含了React在特定时间点需要更新视图所需的一切。Props、state、事件处理程序以及UI描述（基于这些props和state）都被捕获在这个快照中。随后React接收UI的描述并使用它来更新视图。React 将重新渲染拥有该状态的组件以及其所有子组件 - 无论这些子组件是否接受任何 props
-
-<div class="w-full flex gap-x-4">
-  <img class="w-45% object-contain" src="./public/image//chrome-capture-2024-9-9 (1).gif" />
-  <img class="w-45% object-contain" src="./public/image//chrome-capture-2024-9-9 (2).gif" />
-</div>
-
-
-
-
----
-
-# 设计原则
-
-
-
-|     |     |
-| --- | --- |
-| <kbd>UI Before API</kbd> | 以贴合用户使用习惯作为框架设计的基本目的 |
-| <kbd>拥抱复杂度</kbd>   | 将复杂度吸收到框架内部，为框架使用者提供简单直接的概念 |
-| <kbd>局部优先</kbd> | 干净的组件 |
-| <kbd>统一路线</kbd> | 框架设计符合一个理论一个路线 |
-
----
-
-# UI Runtime
-基础包结构
-|     |     |
-| --- | --- |
-| <kbd>react</kbd> | react 基础包, 只提供定义 react 组件(ReactElement)的必要函数 |
-| <kbd>react-dom</kbd>   | react 渲染器之一, 是 react 与 web 平台连接的桥梁(可以在浏览器和 nodejs 环境中使用), 将react-reconciler中的运行结果输出到 web 界面上|
-| <kbd>react-reconciler</kbd> | react 得以运行的核心包(综合协调react-dom,react,scheduler各包之间的调用与配合). 管理 react 应用状态的输入和结果的输出. 将输入信号最终转换成输出信号传递给渲染器. |
-| <kbd>scheduler</kbd> | 调度机制的核心实现, 控制由react-reconciler送入的回调函数的执行时机, 在concurrent模式下可以实现任务分片. 在编写react应用的代码时, 同样几乎不会直接用到此包提供的 api. |
-
-[image](/image/core-packages.png)
-
----
-
-# 核心对象和函数
-
-Fiber 对象 一个Fiber对象代表一个即将渲染或者已经渲染的组件 [React fiber执行demo](https://jser.pro/ddir/rie?reactVersion=18.3.1&snippetKey=vdadhw0m9ros0owiems)
-
-Hook 对象 Hook用于function组件中, 能够保持function组件的状态 useState,useEffect
-
-Task 对象 用于内部scheduler包进行任务调度
-
-current 对象-当前渲染在页面上实际ui的 fiber树结构 
-
-workInProgress 对象-fiber树内存中工作备份，下一帧即将替换当前 current 的fiber树结构
-
-
-scheduleUpdateOnFiber(): 告知React开始渲染的位置，每次rerender都会触发 [image](/image/react-internals-overview-light.png) 
-
-
-ensureRootIsScheduled(): 确保根节点有任务被调度，同时处理重复的useState调用（合并和消除）
-
-scheduleCallback(): 创建任务并确定优先级，放入任务堆中等待 schedule调度
-
-workLoop():任务循环，不断的执行
-
-performConcurrentWorkOnRoot(): 实际调度任务执行的区域 （render阶段，可中断）
-
-commitRoot():提交fiber变动，替换当前current对象 (浏览器开始执行渲染阶段，不可中断) [rerender-demo](https://codesandbox.io/p/sandbox/tt7kwc?file=%2Findex.js) [rerender](https://jser.dev/2023-07-18-how-react-rerenders/#4-summary)
-
-
----
-
-# concurrent mode 可中断渲染
-
-并发渲染，中断可恢复，优先级调度，自动批处理，以上所说的所有结构和对象，都是为这个目标而服务
-
-为什么要把一个ui框架的复杂度提升到这个地步：一切都为 ui before api  快速响应
-
-我们日常使用 App，浏览网页时，有两类场景会制约快速响应：
-
-当遇到大计算量的操作或者设备性能不足使页面掉帧，导致卡顿。
-
-发送网络请求后，由于需要等待数据返回才能进一步操作导致不能快速响应。
-
-这两类场景可以概括为：
-
-CPU 的瓶颈
-
-IO 的瓶颈
-
-React对应的解决方案就是
-
-CPU:时间切片，中断恢复机制
-
-IO:模糊异步同步界限，suspense----[可中断demo](https://codesandbox.io/p/sandbox/search-pokemons-unoptimized-we0jq?file=%2Fsrc%2Findex.js&from-embed) --- [未开启demo](https://codesandbox.io/p/sandbox/search-pokemons-optimized-tcrtt?file=%2Fsrc%2Findex.js&from-embed)
-
-
-
-
-
-
-
----
-
-# 中断
-
-老的React在任务更新上更类似于栈结构，通过递归进行，所以更新一旦开始，中途就无法中断。当层级很深时，递归更新时间超过了 16ms，用户交互就会卡顿。
-
-而新的React架构，整体是由树和链表组成，UI更新时涉及到 状态管理和视图渲染，其中的数据变化由fiber结构中的 hooks 接管，而hooks就是链表结构，更新的复杂度为 O(1)，至于视图渲染，React并不会及时渲染视图变化而是在 render 阶段标记每一个节点的变更内容，统一在commit阶段处理。
-
-而是否中断有一套自己的判断机制，每个任务都有对应的执行时长，当有高优先级任务插入，进行中断，如果低优先级任务超时，低优先级任务变为同步任务直接执行，其次如果任务执行时间过长，也会被中断将cpu控制权交还
-
-[中断示意图](https://jser.dev/2023-06-19-how-does-usestate-work#4-summary)
-
-
-[中断步骤详解](/image/update-process.png)
-
-状态恢复，中断容易恢复难，hooks 是一个链表，不同的更新可能存在前后依赖关系，如果高优先级中断低优先级，很有可能出现数据失真。
-
-
-
-
----
-
-# React Compiler
-
-没错，在19版本的 React 马上就要有自己的 compiler了！
-
-经过之前的介绍，我们知道 React 不会每次都只处理需要更新的节点，而是通过标记和遍历整个树结构来找到需要处理的节点，而如何实现最大可能的节点复用，主要还是依靠开发者自己的手动判断，特别是涉及到一些状态和依赖关系极其复杂的组件时，会通过调用 useMemo 和 useCallback 进行手动标记。
-
-为了更好的炫技，不！是服务开发者，React 团队实现了自己的 Compiler ！
-
-编译器利用其对 JavaScript 和 React 规则的了解，自动对组件和钩子中的值或值组进行记忆化。如果它检测到规则的破坏，它将自动跳过那些组件或钩子，并继续安全地编译其他代码。
-
-
-[demo](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAYjHgpgCYAyeYOAFMEWuZVWEQL4CURwADrEicQgyKEANnkwIAwtEw4iAXiJQwCMhWoB5TDLmKsTXgG5hRInjRFGbXZwB0UygHMcACzWr1ABn4hEWsYBBxYYgAeADkIHQ4uAHoAPksRbisiMIiYYkYs6yiqPAA3FMLrIiiwAAcAQ0wU4GlZBSUcbklDNqikusaKkKrgR0TnAFt62sYHdmp+VRT7SqrqhOo6Bnl6mCoiAGsEAE9VUfmqZzwqLrHqM7ubolTVol5eTOGigFkEMDB6u4EAAhKA4HCEZ5DNZ9ErlLIWYTcEDcIA)
 
 
